@@ -1,5 +1,6 @@
 const submitBtn = document.getElementById('submitBtn');
 const resetBtn = document.getElementById('resetBtn');
+const gradeBtn = document.getElementById('gradeBtn'); 
 
 function fileExtMatches(file, ext) {
     return file && file.name && file.name.toLowerCase().endsWith(ext);
