@@ -1,11 +1,5 @@
-const form = document.getElementById('uploadForm');
-const zipInput = document.getElementById('zipInput');
-const csvInput = document.getElementById('csvInput');
 const submitBtn = document.getElementById('submitBtn');
 const resetBtn = document.getElementById('resetBtn');
-const tableContainer = document.getElementById('tableContainer');
-const tableHead = document.getElementById('tableHead');
-const tableBody = document.getElementById('tableBody');
 
 function fileExtMatches(file, ext) {
     return file && file.name && file.name.toLowerCase().endsWith(ext);
@@ -64,6 +58,8 @@ function displayTable(csvData) {
 
 function writeRubricToGlobal(csvData) {
     const { headers, rows } = csvData;
+
+    // Build formatted rubric columns
     const formattedColumns = headers.map(header => {
         const values = rows.map(row => row[header]).filter(v => v !== undefined && v !== '');
         if (values.length > 0) {
@@ -74,20 +70,16 @@ function writeRubricToGlobal(csvData) {
         return `${header}:`;
     });
 
+    // Write rubric string to global
     window.TAbot.rubric = formattedColumns.join('\n');
 
-    // Return as one string with each column on a new line
-    return formattedColumns.join('\n');
+    // Write just the header row (categories) to global
+    window.TAbot.categories = headers;
+
+    // Return rubric string for convenience
+    return window.TAbot.rubric;
 }
 
-function getRubricCategories(csvData) {
-    const { headers, rows } = csvData;
-    if (rows.length === 0) return '';
-    
-    const firstRow = rows[0];
-    const values = headers.map(header => firstRow[header] || '');
-    return values.join(', ');
-}
 
 form.addEventListener('submit', (e) => {
     e.preventDefault();
@@ -135,5 +127,6 @@ resetBtn.addEventListener('click', () => {
 });
 
 gradeBtn.addEventListener('click', () => {
+    console.log("Grading assignments...");
     gradeAssignments();
 });

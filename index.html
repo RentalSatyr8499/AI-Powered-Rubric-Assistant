@@ -3,26 +3,28 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>TAbot</title>
+    <title>UnsureTA AI</title>
     <link rel="stylesheet" href="styles.css" />
     
     <!-- Global data -->
     <script>
         window.TAbot = {
-            rubric: null,
+        rubric: null,
+        categories: null,
+        confidenceScores: null,
         };
     </script>
 
     <!-- Dependencies -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-    <!-- jsPDF AutoTable plugin (needed for doc.autoTable) -->
-    <script src="https://cdn.jsdelivr.net/npm/jspdf-autotable@3.8.2/dist/jspdf.plugin.autotable.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.28/jspdf.plugin.autotable.min.js"></script>
+
 </head>
 <body>
     <main class="container">
         <div class="left-pane">
-            <h1>TAbot</h1>
+            <h1>UnsureTA AI</h1>
 
             <form id="uploadForm" enctype="multipart/form-data" novalidate>
                 <label for="className">Class Name</label>
@@ -48,25 +50,7 @@
                     <tbody id="tableBody"></tbody>
                 </table>
             </div>
-
             <button id="gradeBtn" type="button" style="display:none;">Grade</button>
-
-            <!-- simple test PDF button (optional / can remove later) -->
-            <div class="pdf-download">
-                <button id="downloadPdfBtn">Download PDF</button>
-                <script>
-                    function createPDF(content, filename = "submission.pdf") {
-                        const { jsPDF } = window.jspdf;
-                        const doc = new jsPDF();
-                        doc.text(content, 10, 10);
-                        doc.save(filename);
-                    }
-                    document.getElementById("downloadPdfBtn").addEventListener("click", () => {
-                        const sampleText = "This is a sample PDF content.";
-                        createPDF(sampleText, "sample.pdf");
-                    });
-                </script>
-            </div>
         </div>
 
         <div class="right-pane">
@@ -78,18 +62,18 @@
                         <th>Grade</th>
                     </tr>
                 </thead>
-                <tbody></tbody>
+                <tbody>
+                </tbody>
             </table>
         </div>
     </main>
 
-    <main class="container"></main>
-
-    <!-- LLM helper (must come before gradeAssignments.js) -->
-    <script src="llm.js"></script>
-
-    <!-- App logic -->
-    <script src="rubricParser.js"></script> 
+    <main class="container">
+        
+    </main>
+    <script src="llmClient.js"></script>
     <script src="gradeAssignments.js"></script> 
+    <script src="rubricParser.js"></script> 
+
 </body>
 </html>

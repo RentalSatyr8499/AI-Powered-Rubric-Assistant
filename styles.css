@@ -119,3 +119,20 @@ table tbody tr:hover {
     border-left: 1px solid #ccc;
     padding-left: 20px;
 }
+.container {
+  display: flex;              /* put left and right panes side by side */
+  justify-content: center;    /* center them horizontally */
+  align-items: flex-start;    /* align at the top */
+  width: 100%;                /* take full available width */
+  max-width: 1200px;          /* constrain the white box */
+  margin: 0 auto;             /* center the box */
+  padding: 20px;
+  box-sizing: border-box;
+  background: white;          /* your white box */
+}
+.left-pane, .right-pane {
+  flex: 1;                    /* let both panes grow/shrink equally */
+  min-width: 0;               /* allow shrinking instead of overflow */
+  padding: 10px;
+}
+
