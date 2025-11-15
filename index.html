@@ -5,12 +5,23 @@
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title>TAbot</title>
     <link rel="stylesheet" href="styles.css" />
+    
+    <!-- Global data -->
+    <script>
+        window.TAbot = {
+        rubric: null,
+        };
+    </script>
+
 </head>
 <body>
     <main class="container">
         <h1>TAbot</h1>
 
         <form id="uploadForm" enctype="multipart/form-data" novalidate>
+            <label for="className">Class Name</label>
+            <input id="className" name="className" type="text" placeholder="Enter class name" required />
+
             <label for="zipInput">Upload .zip file</label>
             <input id="zipInput" name="zipFile" type="file" accept=".zip,application/zip" required />
 
@@ -32,6 +43,10 @@
             </table>
         </div>
     </main>
-    <script src="rubricparser.js"></script> 
+    <script src="rubricParser.js"></script> 
+    <script src="createPrompt.js"></script> 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    <script src="gradeAssignments.js"></script>
+
 </body>
 </html>
