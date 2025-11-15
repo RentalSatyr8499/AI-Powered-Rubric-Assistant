@@ -4,17 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title>TAbot</title>
-    <style>
-        body { font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; margin: 2rem; background:#f7f7fb; color:#111; }
-        .container { max-width:560px; margin:0 auto; background:#fff; padding:1.5rem; border-radius:8px; box-shadow:0 6px 18px rgba(20,20,50,0.06); }
-        h1 { margin:0 0 1rem; font-size:1.5rem; letter-spacing:0.02em; }
-        label { display:block; margin:0.75rem 0 0.25rem; font-weight:600; font-size:0.95rem; }
-        input[type="file"] { display:block; }
-        .note { font-size:0.85rem; color:#555; margin-top:0.25rem; }
-        .actions { margin-top:1rem; display:flex; gap:0.5rem; }
-        button { padding:0.6rem 0.9rem; border:0; background:#0366d6; color:#fff; border-radius:6px; cursor:pointer; font-weight:600; }
-        button:disabled { opacity:0.55; cursor:not-allowed; }
-    </style>
+    <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
     <main class="container">
@@ -33,46 +23,15 @@
                 <button id="resetBtn" type="button">Reset</button>
             </div>
         </form>
+
+        <div id="tableContainer" class="table-container">
+            <h2>CSV Data Preview</h2>
+            <table id="dataTable">
+                <thead id="tableHead"></thead>
+                <tbody id="tableBody"></tbody>
+            </table>
+        </div>
     </main>
-
-    <script>
-        const form = document.getElementById('uploadForm');
-        const zipInput = document.getElementById('zipInput');
-        const csvInput = document.getElementById('csvInput');
-        const submitBtn = document.getElementById('submitBtn');
-        const resetBtn = document.getElementById('resetBtn');
-
-        function fileExtMatches(file, ext) {
-            return file && file.name && file.name.toLowerCase().endsWith(ext);
-        }
-
-        form.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const zip = zipInput.files[0];
-            const csv = csvInput.files[0];
-
-            if (!zip || !csv) {
-                alert('Please choose both a .zip and a .csv file.');
-                return;
-            }
-            if (!fileExtMatches(zip, '.zip')) {
-                alert('Selected ZIP file is not a .zip file.');
-                return;
-            }
-            if (!fileExtMatches(csv, '.csv')) {
-                alert('Selected CSV file is not a .csv file.');
-                return;
-            }
-
-            // Placeholder: handle files (upload via fetch/XHR or process locally)
-            console.log('ZIP file:', zip);
-            console.log('CSV file:', csv);
-            alert('Files validated. Ready to upload/process.');
-        });
-
-        resetBtn.addEventListener('click', () => {
-            form.reset();
-        });
-    </script>
+    <script src="rubricparser.js"></script> 
 </body>
 </html>
