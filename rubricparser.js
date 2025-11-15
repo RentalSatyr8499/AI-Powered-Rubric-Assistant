@@ -62,6 +62,33 @@ function displayTable(csvData) {
     tableContainer.classList.add('show');
 }
 
+function writeRubricToGlobal(csvData) {
+    const { headers, rows } = csvData;
+    const formattedColumns = headers.map(header => {
+        const values = rows.map(row => row[header]).filter(v => v !== undefined && v !== '');
+        if (values.length > 0) {
+            const first = values[0];
+            const rest = values.slice(1).join('; ');
+            return rest ? `${header}: ${first}: ${rest}` : `${header}: ${first}:`;
+        }
+        return `${header}:`;
+    });
+
+    window.TAbot.rubric = formattedColumns.join('\n');
+
+    // Return as one string with each column on a new line
+    return formattedColumns.join('\n');
+}
+
+function getRubricCategories(csvData) {
+    const { headers, rows } = csvData;
+    if (rows.length === 0) return '';
+    
+    const firstRow = rows[0];
+    const values = headers.map(header => firstRow[header] || '');
+    return values.join(', ');
+}
+
 form.addEventListener('submit', (e) => {
     e.preventDefault();
     const zip = zipInput.files[0];
@@ -86,9 +113,11 @@ form.addEventListener('submit', (e) => {
         try {
             const csvData = parseCSV(event.target.result);
             displayTable(csvData);
-            console.log('ZIP file:', zip);
-            console.log('CSV file:', csv);
-            console.log('CSV Data:', csvData);
+            writeRubricToGlobal(csvData);
+
+            // Unhide the Grade button
+            const gradeBtn = document.getElementById("gradeBtn");
+            gradeBtn.style.display = "inline-block";
         } catch (error) {
             alert('Error parsing CSV file: ' + error.message);
             console.error(error);
@@ -103,4 +132,8 @@ form.addEventListener('submit', (e) => {
 resetBtn.addEventListener('click', () => {
     form.reset();
     tableContainer.classList.remove('show');
+});
+
+gradeBtn.addEventListener('click', () => {
+    gradeAssignments();
 });

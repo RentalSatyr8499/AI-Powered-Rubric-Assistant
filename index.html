@@ -5,33 +5,86 @@
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title>TAbot</title>
     <link rel="stylesheet" href="styles.css" />
+    
+    <!-- Global data -->
+    <script>
+        window.TAbot = {
+        rubric: null,
+        };
+    </script>
+
+    <!-- Dependencies -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
 </head>
 <body>
     <main class="container">
-        <h1>TAbot</h1>
+        <div class="left-pane">
+            <h1>TAbot</h1>
 
-        <form id="uploadForm" enctype="multipart/form-data" novalidate>
-            <label for="zipInput">Upload .zip file</label>
-            <input id="zipInput" name="zipFile" type="file" accept=".zip,application/zip" required />
+            <form id="uploadForm" enctype="multipart/form-data" novalidate>
+                <label for="className">Class Name</label>
+                <input id="className" name="className" type="text" placeholder="Enter class name" required />
 
-            <label for="csvInput">Upload .csv file</label>
-            <input id="csvInput" name="csvFile" type="file" accept=".csv,text/csv" required />
-            <div class="note">Select one .zip and one .csv file. Click Submit to proceed.</div>
+                <label for="zipInput">Upload .zip file</label>
+                <input id="zipInput" name="zipFile" type="file" accept=".zip,application/zip" required />
 
-            <div class="actions">
-                <button id="submitBtn" type="submit">Submit</button>
-                <button id="resetBtn" type="button">Reset</button>
+                <label for="csvInput">Upload .csv file</label>
+                <input id="csvInput" name="csvFile" type="file" accept=".csv,text/csv" required />
+                <div class="note">Select one .zip and one .csv file. Click Submit to proceed.</div>
+
+                <div class="actions">
+                    <button id="submitBtn" type="submit">Submit</button>
+                    <button id="resetBtn" type="button">Reset</button>
+                </div>
+            </form>
+
+            <div id="tableContainer" class="table-container">
+                <h2>CSV Data Preview</h2>
+                <table id="dataTable">
+                    <thead id="tableHead"></thead>
+                    <tbody id="tableBody"></tbody>
+                </table>
             </div>
-        </form>
+            <button id="gradeBtn" type="button" style="display:none;">Grade</button>
+            <div class="pdf-download">
+                <button id="downloadPdfBtn">Download PDF</button>
+                <script>
+                    function createPDF(content, filename = "submission.pdf") {
+                        const { jsPDF } = window.jspdf;
+                        const doc = new jsPDF();
+                        doc.text(content, 10, 10); // write text at x=10, y=10
+                        doc.save(filename);        // triggers download
+                    }
+                    document.getElementById("downloadPdfBtn").addEventListener("click", () => {
+                        const sampleText = "This is a sample PDF content.";
+                        createPDF(sampleText, "sample.pdf");
+                    });
+                </script>
+            </div>
+        </div>
 
-        <div id="tableContainer" class="table-container">
-            <h2>CSV Data Preview</h2>
-            <table id="dataTable">
-                <thead id="tableHead"></thead>
-                <tbody id="tableBody"></tbody>
+        <div class="right-pane">
+            <h2>Grades</h2>
+            <table id="uploadedFilesTable">
+                <thead>
+                    <tr>
+                        <th>Submission</th>
+                        <th>Grade</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
             </table>
         </div>
     </main>
-    <script src="rubricparser.js"></script> 
+
+    <main class="container">
+        
+    </main>
+    <script src="rubricParser.js"></script> 
+    <script src="gradeAssignments.js"></script> 
+
 </body>
 </html>
