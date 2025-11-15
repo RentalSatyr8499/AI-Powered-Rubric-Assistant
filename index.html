@@ -40,6 +40,35 @@
                 <div class="actions">
                     <button id="submitBtn" type="submit">Submit</button>
                     <button id="resetBtn" type="button">Reset</button>
+                    <script>
+                        async function testLLMConnection() {
+                        const testPrompt = "Grade this: The cat sat on the mat.";
+
+                        try {
+                            const response = await fetch("/.netlify/functions/callLLM", {
+                            method: "POST",
+                            headers: { "Content-Type": "application/json" },
+                            body: JSON.stringify({ prompt: testPrompt })
+                            });
+
+                            const data = await response.json();
+
+                            if (!response.ok) {
+                            console.error("Test failed:", data.error || `HTTP Error: ${response.status}`);
+                            alert("Test failed: " + (data.error || `HTTP Error: ${response.status}`));
+                            } else {
+                            console.log("Test succeeded. Response:", data.text);
+                            alert("Test succeeded! Check console for response.");
+                            }
+                        } catch (error) {
+                            console.error("Test error:", error.message);
+                            alert("Test error: " + error.message);
+                        }
+                        }
+                    </script>
+                    <button onclick="testLLMConnection()" style="margin-top: 1em; padding: 0.5em 1em; font-size: 1rem;">
+                        🔍 Test LLM Connection
+                    </button>
                 </div>
             </form>
 

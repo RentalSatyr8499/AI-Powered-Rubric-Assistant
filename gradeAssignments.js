@@ -5,7 +5,6 @@ const tableContainer = document.getElementById('tableContainer');
 const tableHead = document.getElementById('tableHead');
 const tableBody = document.getElementById('tableBody');
 
-
 function createLLMPrompt(className, submissionText) {
     var rubric = window.TAbot.rubric;
     var categories = window.TAbot.categories.join(", ");
