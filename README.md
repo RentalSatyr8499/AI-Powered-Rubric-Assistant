@@ -4,7 +4,7 @@
 UnsureTA is an AI‑powered rubric assistant built for the **Claude for Good 2025 Hackathon** at UVA.  
 It helps instructors and teaching assistants grade student submissions more efficiently while keeping **human oversight** front and center.
 
-Our demo is live on Netlify: [UnsureTA on Netlify](https://tourmaline-mermaid-7b9932.netlify.app/)
+Our demo is live on Netlify: [UnsureTA on Netlify](https://6918fb2d1a32570008908e94--unsureta.netlify.app/)
 
 ---
 
