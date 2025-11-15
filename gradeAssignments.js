@@ -32,7 +32,7 @@ function createGradePDF(content) {
 
     lines.forEach(line => {
         // Example line format:
-        // Category1: (5) good; """Feedback text..."""; ignore; optional
+        // Category1: (5) good; """Feedback text..."""; ignore; optional; 0.87; "comment text"
         const parts = line.split(";").map(p => p.trim());
 
         // First part contains category and grade
@@ -46,6 +46,26 @@ function createGradePDF(content) {
         headers.push(categoryName);
         gradesRow.push(grade);
         feedbackRow.push(feedback);
+
+        // --- New logic for confidence + comment ---
+        const confidence = parts[parts.length - 2] || "";
+        const comment = parts[parts.length - 1] || "";
+
+        // Build an object for this rubric category
+        const scoreObj = {
+            category: categoryName,
+            grade,
+            feedback,
+            confidence,
+            comment
+        };
+
+        // Push into the current submission’s confidence scores
+        // (one array per submission)
+        if (!window.TAbot.confidenceScores[window.TAbot.confidenceScores.length - 1]) {
+            window.TAbot.confidenceScores.push([]);
+        }
+        window.TAbot.confidenceScores[window.TAbot.confidenceScores.length - 1].push(scoreObj);
     });
 
     // Build table data: 3 rows (Grade, Feedback, placeholders ignored)
@@ -72,18 +92,20 @@ function createGradePDF(content) {
 }
 
 async function gradeSubmission(textContent) {
-  const className = document.getElementById('className').value.trim();
-  const llmPrompt = createLLMPrompt(className, textContent);
+    const className = document.getElementById('className').value.trim();
+    const llmPrompt = createLLMPrompt(className, textContent);
 
-  try {
-    const LLMresponse = await callLLM(llmPrompt);   // await the Promise
-    const pdfDoc = createGradePDF(LLMresponse);
-    return pdfDoc;                                  // resolves to jsPDF object
-  } catch (error) {
-    console.error("Failed (gradeSubmission):", error.message);
-    alert("Error: " + error.message);
-    return null;
-  }
+    try {
+
+        const LLMresponse = await callLLM(llmPrompt); // await the Promise
+        const pdfDoc = createGradePDF(LLMresponse);
+        return pdfDoc; // resolves to jsPDF object
+
+    } catch (error) {
+        console.error("Failed (gradeSubmission):", error.message);
+        alert("Error: " + error.message);
+        return null;
+    }
 }
 
 function displayGrades(filesWithGrades) {
