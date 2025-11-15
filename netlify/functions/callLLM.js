@@ -1,5 +1,3 @@
-const fetch = require('node-fetch');
-
 const HF_API_URL = 'https://api-inference.huggingface.co/models/mistralai/Mistral-7B-Instruct-v0.2';
 const HF_TOKEN = process.env.HF_ACCESS_TOKEN;
 
