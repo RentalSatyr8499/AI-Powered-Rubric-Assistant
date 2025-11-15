@@ -1,0 +1,10 @@
+Name: Jordan Lee
+ID: 1002
+
+Content:
+
+One big benefit of AI in education is personalization. Traditional classes often move at one speed and some students feel lost while others feel bored. An AI system can look at a student answer history and choose questions that are just hard enough. For example a reading app can slowly increase the difficulty of passages when it sees that the student keeps scoring high on easier ones. This helps students stay in the zone where they are challenged but not overwhelmed.
+
+A serious risk is fairness. Some schools or families might not have access to reliable devices or internet. If assignments start to require AI tools then students without these tools are at a clear disadvantage. Also many AI systems are trained on data that may include bias. This could show up in writing suggestions that reinforce stereotypes or in grading systems that are less accurate for certain groups of students.
+
+In my view AI should be treated like a powerful but imperfect tool. Schools should give all students access when they use AI in class and teachers should still have the final say in grading and feedback rather than trusting the AI blindly.

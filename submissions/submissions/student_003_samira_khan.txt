@@ -1,0 +1,10 @@
+Name: Samira Khan
+ID: 1003
+
+Content:
+
+AI tools can reduce busy work for both students and teachers. For example an AI grammar checker can quickly highlight unclear sentences and basic mistakes in a draft. This lets students focus on improving their ideas instead of spending hours fixing small issues. Teachers can also save time if an AI helps them check for missing citations or suggests which essays might need extra attention. With some of this routine work automated teachers can spend more time on discussions and projects that require human judgment.
+
+On the other hand there is a risk that students start to lose their own voice in writing. If they always accept suggestions from AI tools their essays can begin to sound similar and generic. They might avoid creative sentence structures because the AI marks them as unusual. Another problem is privacy because many tools send student writing to external servers for processing. Schools and parents need to be careful about what kind of data is shared and how long it is stored.
+
+I think AI should be used in a transparent way. Students should know what data is being collected and should be encouraged to disagree with the AI when they have a good reason. That way they keep developing their own style while still getting useful support.

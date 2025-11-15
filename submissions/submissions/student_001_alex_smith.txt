@@ -1,0 +1,10 @@
+Name: Alex Smith
+ID: 1001
+
+Content:
+
+AI tools in education can be very helpful because they give students instant feedback and extra practice. For example, if a student is struggling with algebra, an AI tutor can show practice problems and explain each step so the student can try again right away. This means students do not have to wait for office hours to get help. They can learn at their own pace and review topics as many times as they need.
+
+However there is also a risk if students depend on AI too much. Some students might copy answers from an AI without thinking about how the solution works. Over time this can hurt their critical thinking skills and make them less confident when they do not have the tool in front of them. In addition teachers may not always see the real level of student understanding if most of the work is done with AI support.
+
+Overall I think AI tools are helpful as long as they are used as a support and not as a replacement for learning. Teachers should explain when and how to use these tools in a responsible way and students should still try to solve problems on their own before asking the AI for help.
