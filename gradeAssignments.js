@@ -188,12 +188,13 @@ function displayGrades(filesWithGrades) {
     btn.style.padding = "0.5rem 1rem";
     btn.style.fontSize = "1rem";
 
-    // Add click handler
     btn.addEventListener("click", () => {
-        const { jsPDF } = window.jspdf;
-        const doc = new jsPDF();
-        doc.text("this is a grading report", 20, 30);
-        doc.save("grading_report.pdf");
+        const link = document.createElement("a");
+        link.href = "sample grading score report.pdf";
+        link.target = "_blank";   // open in new tab
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
     });
 
     // Append below the table
